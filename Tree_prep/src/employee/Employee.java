@@ -1,6 +1,7 @@
 package employee;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Employee {
 	
@@ -66,11 +67,43 @@ public class Employee {
 		}		
 	}
 	
+	public void printSubordinates_recursive(){		
+		printSubordinates(this);
+	}
+	
+	private void printSubordinates(Employee e){
+		ArrayList<Employee> subs = e.getSubordinates();
+		for(int i=0;i<subs.size();i++){
+			Employee s = subs.get(i);
+			printSubordinates(s);
+			System.out.println(s.name);		
+		}		
+		return;	
+	}
+	
 	public void printManagers(){
 		Employee e = this.getManager();
 		while(e!=null){
 			System.out.println(e.getName());
 			e = e.getManager();
 		}
+	}
+	
+	
+	public int getHeight(){
+		return height(this);
+	}
+
+	private int height(Employee e) {
+		
+		ArrayList<Integer> vals = new ArrayList<Integer>();
+		ArrayList<Employee> subs = e.getSubordinates();
+		for(int i=0;i<subs.size();i++){		
+			vals.add(1 + height(subs.get(i)));
+		}
+		if(vals.size()==0)
+			return 1;
+		else
+			return Collections.max(vals);
 	}
 }

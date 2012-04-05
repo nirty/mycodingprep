@@ -242,7 +242,7 @@ public class BinaryTree {
 		boolean leftok = isBst(node.getLeft(),node.getValue().getWeight(), min);
 		if(leftok==false)
 			return false;
-		boolean rightok = isBst(node.getRight(),Integer.MAX_VALUE, node.getValue().getWeight());
+		boolean rightok = isBst(node.getRight(),Max, node.getValue().getWeight());
 		return rightok;	
 	}
 

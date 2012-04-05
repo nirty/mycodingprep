@@ -1,5 +1,7 @@
 package employee;
 
+import java.util.ArrayList;
+
 public class Organization {
 	
 	public static void main(String args[]){
@@ -62,6 +64,17 @@ public class Organization {
 	 System.out.println("___________________MANAGERS___________________");
 	 
 	 IWS.printManagers();
-		
+	 
+	 System.out.println("______________RECURSIVE___________________");
+	 ceo.printSubordinates_recursive();
+	 
+	 System.out.println("______________MAXIMUM HEIGHT OF THE TREE___________________");
+	 System.out.println(ceo.getHeight());
+	 
+	 System.out.println("______________HEIGHT FROM NIRTY & JILL & BANU___________________");
+	 System.out.println(Nirty.getHeight());
+	 System.out.println(Jill.getHeight());
+	 System.out.println(banu.getHeight());
 	}
+	
 }
