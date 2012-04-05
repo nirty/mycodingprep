@@ -40,18 +40,14 @@ public class Maxsubarray {
 		
 		System.out.println();
 		int max_start = 0;
-		int max_end = 0;
-		
-		
+		int max_end = 0;	
 		
 		int curr_start = 0;
 		
 		int maxsum = arr[0];
 		int currsum = arr[0];
 		int maxnegative = arr[0];
-		boolean negative = true;
-	
-		
+		boolean negative = true;	
 		
 		for(int i=1 ;i<arr.length;i++){
 			
@@ -62,8 +58,7 @@ public class Maxsubarray {
 				
 				if(arr[i] > maxnegative)
 					maxnegative = arr[i];
-			}		
-			
+			}					
 			
 			if(currsum<0){
 				currsum = 0;
