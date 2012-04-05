@@ -45,7 +45,7 @@ public class DuplicateElemination {
 			System.out.print(my_array2[i]+ "  ");
 		
 		System.out.println();
-		int my_array3[] = {1, 1, 1, 1, 1};
+		int my_array3[] = {1, 2, 1, 3, 1};
 		
 		System.out.println("Before");
 		for(int i=0;i<my_array3.length;i++)
@@ -108,11 +108,9 @@ public class DuplicateElemination {
 	private static int[] eleminate(int[] arr) {
 
 		int length = arr.length;
-		for(int i=0; i<length;i++){
+		for(int i=0; i<length;i++){		
 			
-			
-			for(int j=i+1; j<length;j++){
-				
+			for(int j=i+1; j<length;j++){				
 				
 				if(arr[i]==arr[j]){
 	
@@ -124,6 +122,8 @@ public class DuplicateElemination {
 					while(m<length){						
 						if(arr[j]==arr[m])
 							dupend++;
+						else
+							break;
 						
 						m++;						
 					}
