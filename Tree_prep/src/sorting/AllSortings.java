@@ -13,9 +13,7 @@ public class AllSortings {
 		quickSort(arr);
 		mergeSort(arr);
 		iterativmergeSort(arr);
-	}
-	
-	
+	}	
 	
 	public static void bubbleSort(int arr[]){
 		
@@ -33,14 +31,13 @@ public class AllSortings {
 					arr[i] = arr[i+1];
 					arr[i+1] = temp;
 					swapped = true; // set swap true
-				}
-			
+				}			
 			}
 		}
 		
 	System.out.println("___________________BUBBLE SORT___________________");
 	print(arr);
-	}
+	}	
 	
 	public static void selectionSort(int arr[]){
 		
@@ -52,18 +49,16 @@ public class AllSortings {
 			
 			minIndex = i;//assign minimum index as current
 			
-			for(int j=i+1;j<n;j++){ // iterate through all the other positions from i+1 to end
-				
+			for(int j=i+1;j<n;j++){ // iterate through all the other positions from i+1 to end				
 				if(arr[j]<arr[minIndex]) // find minimum position of element
 					minIndex = j;
+			}
 				
-				if(minIndex!=i){// if the minimum position is found then swap to the i th position
-					int temp = arr[i];
-					arr[i] = arr[i+1];
-					arr[i+1] = temp;
-					
-				}				
-			}		
+			if(minIndex!=i){// if the minimum position is found then swap to the i th position
+				int temp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i+1] = temp;				
+			}						
 		}		
 
 		System.out.println("___________________SELECTION SORT___________________");
