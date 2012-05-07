@@ -309,6 +309,27 @@ public class OwnImplementations {
 	     return ( p * factorial ( p - 1 ) );
 	  }
 
+	int gcd(int a, int b) {
+		int temp;
+		while (b != 0) { //not sure
+			temp = a % b;
+			a = b;
+			b = temp;
+		}
+		return (a);
+	}
+
+	int gcd_recurse(int a, int b) {
+		int temp;
+		temp = a % b;
+		if (temp == 0) {
+			return (b);
+		} else {
+			return (gcd_recurse(b, temp));
+		}
+
+	}
+	// Recursive algorithm int gcd_recurse(int a, int b) { int temp; temp = a % b; if (temp == 0) { return(b); } else { return(gcd_recurse(b, temp)); } }
 	//permuations of a string iterative way
 	//longest palindrome in a given array
 	//23) Write function to compute Nth Fibonacci number? Both iterative and recursive?	
