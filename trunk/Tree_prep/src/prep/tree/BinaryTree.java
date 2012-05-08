@@ -1,6 +1,7 @@
 package prep.tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -440,8 +441,7 @@ public class BinaryTree {
 	}
 	
 	public boolean bfs(int look){
-		return bfssearch(root,look);
-		
+		return bfssearch(root,look);		
 	}
 
 	private boolean bfssearch(Node node,int look) {		
