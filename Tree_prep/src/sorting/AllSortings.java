@@ -176,6 +176,19 @@ public class AllSortings {
 	
 		System.out.println(arr);
 	}
+	
+	public void sortElements(int arr[], int k){
+
+		for(int i=0;i<arr.length;i++){
+		  for (int j=i+1; j< i+k && j<arr.length; j++){
+			  if(arr[i] > arr[j]){
+				  int temp = arr[j];
+		   			arr[j] = arr[i];
+		   			arr[i] = temp;		
+			  }
+		  }
+		}
+	}
 
 	public static void print(int arr[]){
 		for(int i=0;i<arr.length;i++)
