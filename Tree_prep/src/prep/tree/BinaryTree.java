@@ -436,6 +436,41 @@ public class BinaryTree {
 		
 	}
 
+	//TODO Given a binary search tree and a keyvalue, return the node that has value closest to the key
+	
+	public int returnClosest(int key){
+		
+		 ArrayList<Node> stack = new ArrayList<Node>();
+		 stack.add(root);
+		 
+		 Node minnode = root;
+		 int mindiff = Integer.MAX_VALUE;
+		 for(int i=0;i<stack.size();i++){
+			 Node current = stack.get(i);
+			 
+			 if(current.getValue().getWeight()==key){
+				 minnode = current;
+				 break;
+			 }
+			 
+			 if(Math.abs(current.getValue().getWeight()-key)<mindiff){
+				 minnode = current;
+				 mindiff = Math.abs(current.getValue().getWeight()-key);
+			 }
+			 
+			 if(current.getLeft()!=null){
+				 if(key<current.getValue().getWeight())
+					 stack.add(current.getLeft());
+			 }
+			 if(current.getRight()!=null){
+				if(key>current.getValue().getWeight()) 
+					stack.add(current.getRight());
+			 }
+		}
+		return minnode.getValue().getWeight();
+	}
+	
+
 	public boolean isbalanced(){// TODO
 		return false;
 	}
@@ -630,6 +665,19 @@ public class BinaryTree {
 		tree.printTree();
 		System.out.println("____________________________PRETTY TREE");
 		TreePrinter.printNode(root);
+		
+		System.out.println("Closest to 10  :" + tree.returnClosest(10));
+		System.out.println("Closest to 4  :" + tree.returnClosest(4));
+		System.out.println("Closest to 2  :" + tree.returnClosest(2));
+		System.out.println("Closest to -100  :" + tree.returnClosest(-100));
+		System.out.println("Closest to 14  :" + tree.returnClosest(14));
+		System.out.println("Closest to 8  :" + tree.returnClosest(8));
+		System.out.println("Closest to 20  :" + tree.returnClosest(20));
+		System.out.println("Closest to 101  :" + tree.returnClosest(101));
+		System.out.println("Closest to 25  :" + tree.returnClosest(25));
+		System.out.println("Closest to 90  :" + tree.returnClosest(90));
+		System.out.println("Closest to 60  :" + tree.returnClosest(60));
+		System.out.println("Closest to 70  :" + tree.returnClosest(70));
 		
 		System.out.println("____________________________POSSIBLE PATHS");
 		tree.printPaths();		
