@@ -11,6 +11,30 @@ public class DuplicateElemination {
 	public static void main(String[] args) {
 		
 		
+	/*	Integer j = new Integer(1);
+		Integer k = new Integer(1);
+		
+		String s = "king";
+		String s1 = "king";
+		
+		String ii = new String("king");
+		String ii1 = new String("king");
+		
+		Double g1 = new Double(1.00);
+		Double g2 = new Double(1.00);
+		
+		
+		DuplicateElemination d1 = new DuplicateElemination();
+		DuplicateElemination d2 = new DuplicateElemination();
+		
+		System.out.println(j.hashCode()+ ":" + k.hashCode());
+		System.out.println(s.hashCode()+ ":" + s1.hashCode());
+		System.out.println(ii.hashCode()+ ":" + ii1.hashCode());
+		System.out.println(d1.hashCode()+ ":" + d2.hashCode());
+		System.out.println(g1.hashCode()+ ":" + g2.hashCode());
+		
+		*/
+		
 		int arr[] = {1, 2, 3, 4, 4, 6, 7};
 		System.out.println("Before");
 		for(int i=0;i<arr.length;i++)
@@ -23,9 +47,15 @@ public class DuplicateElemination {
 		System.out.println();
 		int my_array1[] = {1, 1, 2, 3, 5, 6, 6, 7, 10, 25, 100, 123, 123};
 		
+		
+		
 		System.out.println("Before");
 		for(int i=0;i<my_array1.length;i++)
 			System.out.print(my_array1[i]+ "  ");
+		System.out.println();
+		System.out.println("PRINT OUT UNIQUE FROM SORTED");
+		
+		
 		my_array1 = eleminate(my_array1);
 		System.out.println();
 		System.out.println("After");
