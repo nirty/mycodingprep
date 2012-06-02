@@ -4,7 +4,10 @@ public class OwnImplementations {
 
 	
 	public static void main(String[] args) {
+		System.out.println("NEW PALINDROME");
 
+		System.out.println(isnewPalindrome("  a b  b  a"));
+		
 		atoi("1998");
 		atoi("0000000");
 		atoi("123456");
@@ -243,6 +246,32 @@ public class OwnImplementations {
 		int i=0;
 		int j=word.length()-1;
 		while(i<=j){
+			
+			if(word.charAt(i)!=word.charAt(j))
+				return false;
+			
+			i++;
+			j--;
+		}
+		return true;
+	}
+	
+	static boolean isnewPalindrome(String word){
+		
+		int i=0;
+		int j=word.length()-1;
+		while(true){
+			
+			while(word.charAt(i)== ' '){
+				i++;
+			}
+			
+			while(word.charAt(j)== ' '){
+				j--;
+			}
+			
+			if(i>j)
+				break;
 			
 			if(word.charAt(i)!=word.charAt(j))
 				return false;
