@@ -53,15 +53,16 @@ public class iterativePermutation {
 		StringBuffer temp = new StringBuffer();
 		char s[] = input.toCharArray();
 		int N = input.length();
-		int p[] = new int[N + 1];
+		int p[] = new int[N];
 		l1.add(input);
 		
-		for (i = 0; i < N + 1; i++)
+		for (i = 0; i < N; i++)
 		{
 			p[i] = i;
 		}
 
 		i = 1;
+
 		while (i < N)
 		{
 			p[i] = p[i]- 1;
@@ -69,6 +70,12 @@ public class iterativePermutation {
 				j = p[i];
 			else
 				j = 0;
+			
+			System.out.println("INPUT CHARACTER ARRAY");
+			for(int hu = 0 ;hu <s.length;hu++){
+				System.out.print(s[hu] + "\t" );
+			}
+			System.out.println();
 
 			t = s[j];
 			s[j] = s[i];
@@ -80,20 +87,40 @@ public class iterativePermutation {
 			}
 
 			output = new String(temp);
-			if (l1.contains(output) == false){ //takes into account of the repitive words formed
+			
+			
+			if (l1.contains(output) == false){ //takes into account of the repitive words formed				
 				l1.add(output);
 			}else{
 				System.out.println("MISSED PERMUTATION__________________");
 			}
+			
+			System.out.println(" ____ i: "+i  + " ____ j: "+j);
 
-			temp.delete(0, N + 1);
+			
+			
+			temp.delete(0, N);
 			i = 1;
 			
-			while (p[i] == 0)
+			System.out.println("Array of P before");
+			for(int hu = 0 ;hu <p.length;hu++){
+				System.out.print(p[hu] + "\t" );
+			}
+			System.out.println();
+			
+			while ( i< p.length && p[i] == 0)
 			{
 				p[i] = i;
 				i++;
 			}
+			
+			System.out.println("Array of P after");
+			for(int hu = 0 ;hu <p.length;hu++){
+				System.out.print(p[hu] + "\t" );
+			}
+			System.out.println();
+			System.out.println(" I === " + i);
+			System.out.println("__________________________________________________________________");
 		}
 		
 		return l1;
@@ -117,7 +144,7 @@ public class iterativePermutation {
 		
 		System.out.println("QUICK PERM PERMUTATIONS");
 		
-		ArrayList<String> result = QuickPermute("123");
+		ArrayList<String> result = QuickPermute("abcd");
 		System.out.println(result);
 
 	}

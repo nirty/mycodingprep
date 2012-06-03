@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 public class Permutations {
 
+	//http://www.bearcave.com/random_hacks/permute.html
     // print N! permutation of the characters of the string s (in order)
     public  static void perm1(String s) { perm1("", s); }
     private static void perm1(String prefix, String s) {
