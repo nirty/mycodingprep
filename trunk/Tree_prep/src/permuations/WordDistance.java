@@ -8,63 +8,61 @@ import java.util.Scanner;
 public class WordDistance {
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("path.in"));
-        PrintWriter out = new PrintWriter(new File("path.out"));
+       
         String word1, word2;
         int[][] melchior;
 
-        while (in.hasNext()) {
-            word1 = in.nextLine();
-            word2 = in.nextLine();
-            out.print("Transformation of ");
-            out.print(word1 + " to " + word2 + " in ");
+        
+            word1 = "hellio";
+            word2 =  "jeklo";
+            System.out.print("Transformation of ");
+            System.out.print(word1 + " to " + word2 + " in ");
             melchior = distance(word1, word2);
             int funVariable = melchior[melchior.length - 1][melchior[0].length - 1];
-            out.print(funVariable);
-            out.println(" steps: ");
-            out.println();
-            printStuff(melchior, melchior.length - 1, melchior[0].length - 1, word1, word2, out);
-            out.println();
-        }
-        out.close();
+            System.out.print(funVariable);
+            System.out.println(" steps: ");
+            System.out.println();
+            printStuff(melchior, melchior.length - 1, melchior[0].length - 1, word1, word2);
+            System.out.println();
+        
     }
 
-    private static String printStuff(int[][] map, int locX, int locY, String word1, String word2, PrintWriter out)
+    private static String printStuff(int[][] map, int locX, int locY, String word1, String word2)
     {
         String modified;
         int difference;
         if(map[locX][locY]==0)
         {
-            out.println("0. "+word1);
+            System.out.println("0. "+word1);
             return word1;
         }
         else if(locX!=0&&locY!=0&&map[locX-1][locY-1] == map[locX][locY] - 1)
         {
-            modified = printStuff(map, locX-1, locY-1, word1, word2, out);
+            modified = printStuff(map, locX-1, locY-1, word1, word2);
             difference = word1.length()-modified.length();
             modified = modified.substring(0, locX-1-difference).concat(Character.toString(word2.charAt(locY-1))).concat(modified.substring(locX-difference));
-            out.println(map[locX][locY]+". "+modified);
+            System.out.println(map[locX][locY]+". "+modified);
             return modified;
         }
         else if(locX!=0&&map[locX-1][locY] == map[locX][locY] - 1)
         {
-            modified = printStuff(map, locX-1, locY, word1, word2, out);
+            modified = printStuff(map, locX-1, locY, word1, word2);
             difference = word1.length()-modified.length();
             modified = modified.substring(0, locX-1-difference).concat(modified.substring(locX-difference));
-            out.println(map[locX][locY]+". "+modified);
+            System.out.println(map[locX][locY]+". "+modified);
             return modified;
         }
         else if(locY!=0&&map[locX][locY-1] == map[locX][locY] - 1)
         {
-            modified = printStuff(map, locX, locY-1, word1, word2, out);
+            modified = printStuff(map, locX, locY-1, word1, word2);
             difference = word1.length()-modified.length();
             modified = modified.substring(0, locX-difference).concat(Character.toString(word2.charAt(locY-1))).concat(modified.substring(locX-difference));
-            out.println(map[locX][locY]+". "+modified);
+            System.out.println(map[locX][locY]+". "+modified);
             return modified;
         }
         else if(locX!=0&&locY!=0&&map[locX-1][locY-1] == map[locX][locY])
         {
-            return printStuff(map, locX-1, locY-1, word1, word2, out);
+            return printStuff(map, locX-1, locY-1, word1, word2);
         }
         else
         {
