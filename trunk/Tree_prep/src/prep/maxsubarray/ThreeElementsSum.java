@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class ThreeElementsSum {
 	
+	
+	// http://www.geeksforgeeks.org/archives/484
 	static void checkForSum3 (int arr[], int sum) { 		
 			Arrays.sort(arr);	
 			for(int k=0;k<arr.length;k++)
