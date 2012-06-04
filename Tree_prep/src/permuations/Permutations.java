@@ -66,30 +66,6 @@ public class Permutations {
     }
     
     
-    
-    //not with repetition
-    private static void findSubsets(char array[])
-    {
-      int numOfSubsets = 1 << array.length; 
-
-      for(int i = 0; i < numOfSubsets; i++)
-     {
-        int pos = array.length - 1;
-       int bitmask = i;
-
-       System.out.print("{");
-       while(bitmask > 0)
-       {
-        if((bitmask & 1) == 1)
-         System.out.print(array[pos]+",");
-        bitmask >>= 1;
-        pos--;
-       }
-       System.out.print("}");
-       System.out.println();
-     }
-    }
-    
     public static void swap(char[] set, int first, int second) //java doesn't allow the same pass by reference like C++
 	{
 	        char ch = set[second]; //so we pass the char array and assign, since this will hold
@@ -114,23 +90,7 @@ public class Permutations {
 	        return 0;
 	}
 
-	 private static void subsets (String s)
-	 {
-	        subsetsAux(s, "", true);
-	 }
-	    
-	 private static void subsetsAux(String remaining, String candidate, boolean print)
-	  {
-	        if (print)
-	        {
-	            System.out.println(candidate);
-	        }
-	        if (!remaining.equals(""))
-	        {
-	            subsetsAux(remaining.substring(1), candidate + remaining.charAt(0), true);
-	            subsetsAux(remaining.substring(1), candidate, false);
-	        }
-	}
+	
 	     
     public static void main(String[] args) {
        int N = 3;
@@ -150,18 +110,11 @@ public class Permutations {
        System.out.println("---------------------------");
        System.out.println("____________________ALL Unique Combinations");
        comb_u("hello");
-       System.out.println("---------------------------");
-       System.out.println("____________________ALL subsets in a array bit manipulation");      
-       char[] set = {'h','e','l','l','o'};//http://codesam.blogspot.com/2011/03/find-all-subsets-of-given-set.html       
-       findSubsets(set);
-       System.out.println("---------------------------");      
+       System.out.println("---------------------------");        
        System.out.println("_______________BACKTRACKING PERMUTE");
        char[] test = {'a','b','c','d'};
        permute(test, 0, 4);
        System.out.println("---------------------------");
-       String test_str = "hello";
-       System.out.println("_____________________Subsets of " + test_str);
-       subsets(test_str);
-       System.out.println("----------------------------");
+      
     }
 }
