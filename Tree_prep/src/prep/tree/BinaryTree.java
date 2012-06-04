@@ -364,8 +364,11 @@ public class BinaryTree {
 		node.getLeft().setLeft(temp);
 	}
 
-	public Node copyTree(){		
-		return copytree(root);
+	public BinaryTree copyTree(){	
+		
+		BinaryTree newtree = new BinaryTree();
+		newtree.root = copytree(root);
+		return newtree;
 	}
 	
 	private Node copytree(Node node) {
@@ -432,11 +435,33 @@ public class BinaryTree {
 		}
 	}	
 
-	public void deleteNodefromBST(){// TODO
-		
+	public boolean deleteNodefromBST(int value){		
+		if(root == null)
+			return false;
+		else if(root.getValue().getWeight()==value){			
+			Data dummydata = new Data("dummy", value);
+			Node dummy = new Node(dummydata, root, null);			
+			boolean result = root.remove(value, dummy);			
+			root = dummy.getLeft();
+			return result;
+		}else{
+			return root.remove(value, null);
+		}
 	}
-
-	//TODO Given a binary search tree and a keyvalue, return the node that has value closest to the key
+	
+	public boolean deleteNodefromBSTLeft(int value){		
+		if(root == null)
+			return false;
+		else if(root.getValue().getWeight()==value){			
+			Data dummydata = new Data("dummy", value);
+			Node dummy = new Node(dummydata, root, null);			
+			boolean result = root.removeLeft(value, dummy);			
+			root = dummy.getLeft();
+			return result;
+		}else{
+			return root.remove(value, null);
+		}
+	}
 	
 	public int returnClosest(int key){
 		
@@ -471,9 +496,17 @@ public class BinaryTree {
 	}
 	
 
-	public boolean isbalanced(){// TODO
-		return false;
+	//tree is height-balanced if the heights of the left and right subtree's of each node are within 1
+	/*
+	 * (height balanced) heights of left and right subtrees are within 1
+(BST) values in left subtree are smaller than root value, which is smaller than the values in the right subtree.
+	 */
+	public boolean isbalanced(){
+		if (root ==null)
+			return true;
+		return root.isbalanced();
 	}
+	
 	
 	public boolean bfs(int look){
 		return bfssearch(root,look);		
@@ -739,11 +772,59 @@ public class BinaryTree {
 		System.out.println(" 20 and 13 - "+r5.getValue().getWeight());
 		
 		System.out.println("_________________________________Copied TREE");
-		Node copied = tree.copyTree();
-		TreePrinter.printNode(copied);
+		BinaryTree copied = tree.copyTree();
+		TreePrinter.printNode(copied.root);
+		
+		
+		System.out.println("REMOVING FROM RIGHT SUB TREE________________________________");
+		System.out.println("After deleting :5");
+		copied.deleteNodefromBST(5);
+		TreePrinter.printNode(copied.root);
+		
+		
+		System.out.println("After deleting :3");
+		copied.deleteNodefromBST(3);
+		TreePrinter.printNode(copied.root);
+		
+		
+		System.out.println("After deleting :-20");
+		copied.deleteNodefromBST(-20);
+		TreePrinter.printNode(copied.root);
+		
+		BinaryTree copiedleft = tree.copyTree();
+
+		
+		
+		System.out.println("REMOVING FROM LEFT SUB TREE___________________________________");
+		
+		TreePrinter.printNode(copiedleft.root);
+		System.out.println("IS It Balanced ????" + copiedleft.isbalanced());
+		System.out.println("After deleting :5");
+		copiedleft.deleteNodefromBSTLeft(5);
+		TreePrinter.printNode(copiedleft.root);
+		System.out.println("IS It Balanced ????" + copiedleft.isbalanced());
+		
+		System.out.println("After deleting :3");
+		copiedleft.deleteNodefromBSTLeft(3);
+		TreePrinter.printNode(copiedleft.root);
+		System.out.println("IS It Balanced ????" + copiedleft.isbalanced());
+		
+		
+		System.out.println("After deleting :-20");
+		copiedleft.deleteNodefromBSTLeft(-20);
+		TreePrinter.printNode(copiedleft.root);
+		System.out.println("IS It Balanced ????" + copiedleft.isbalanced());
+		
+		System.out.println("After deleting :100");
+		copiedleft.deleteNodefromBSTLeft(100);
+		TreePrinter.printNode(copiedleft.root);
+		System.out.println("IS It Balanced ????" + copiedleft.isbalanced());
+		
+		
+		
 		
 		System.out.println("_________________________________SAME TREE OR NOT - SAME");
-		System.out.println(tree.sameTree(tree.getRoot(), copied));
+		System.out.println(tree.sameTree(tree.getRoot(), copied.getRoot()));
 		
 		System.out.println("_________________________________LEAF COUNT ");
 		System.out.println(tree.countLeaf());
@@ -768,7 +849,7 @@ public class BinaryTree {
 		System.out.println(tree.dfs(13));
 		
 		System.out.println("_________________________________SAME TREE OR NOT - NOT SAME");
-		System.out.println(tree.sameTree(tree.getRoot(), copied));
+		System.out.println(tree.sameTree(tree.getRoot(), copied.getRoot()));
 		
 		System.out.println("_________________________________LEAF COUNT ");
 		System.out.println(tree.countLeaf());

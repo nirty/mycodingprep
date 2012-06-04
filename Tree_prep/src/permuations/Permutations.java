@@ -90,7 +90,46 @@ public class Permutations {
 	        return 0;
 	}
 
+	public  static void permfix(String s) { 
+		
+		boolean[] stoppos = new boolean[s.length()];		
+		String processword = preprocessing (s,stoppos);
+		permfix("", processword, s,stoppos ); 
+		
+	}
 	
+	private static String preprocessing (String word,boolean arr[]){
+		
+		StringBuffer resultword = new StringBuffer();
+		for(int i=0;i<word.length();i++){
+			
+			if(word.charAt(i)>=97 && word.charAt(i)<=122){
+				arr[i] = false;
+				resultword.append(word.charAt(i));
+			}
+			else{
+				arr[i] = true;
+			}
+		}
+		return resultword.toString();
+	}
+    private static void permfix(String prefix, String s,String finalstr,boolean[] pos) {
+        int N = s.length();
+        if (N == 0) {      
+        	for(int hj=0;hj<pos.length;hj++){        		
+        		if(pos[hj] == true){        			
+        			prefix = prefix.substring(0, hj)+finalstr.charAt(hj)+prefix.substring(hj);
+        		}        		
+        	}
+        	System.out.println(prefix);
+        }
+        else {
+            for (int i = 0; i < N; i++){            	
+               permfix(prefix + s.charAt(i), s.substring(0, i)+s.substring(i+1, N),finalstr, pos);
+            }
+        }
+
+    } 
 	     
     public static void main(String[] args) {
        int N = 3;
@@ -115,6 +154,8 @@ public class Permutations {
        char[] test = {'a','b','c','d'};
        permute(test, 0, 4);
        System.out.println("---------------------------");
+       System.out.println("_______________Permutation with some elements ignored!! -- removing and then appending appropriate positions");
+       permfix("a;cB:{}do()");
       
     }
 }
