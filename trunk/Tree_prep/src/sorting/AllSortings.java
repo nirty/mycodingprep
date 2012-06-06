@@ -7,10 +7,13 @@ public class AllSortings {
 		
 		//int arr[] = {12,9,4,99,120,1,3,10};
 		int arr[] =  {1, 12, 5, 26, 7, 14, 3, 7, 2};
+		
+		int testarr[] = {9,28,1,12,5,26,7,14,3,7,2};
 		bubbleSort(arr);
 		selectionSort(arr);
 		insertionSort(arr);
 		quickSort(arr);
+		quickSorttest(testarr);
 		mergeSort(arr);
 		iterativmergeSort(arr);
 	}	
@@ -130,7 +133,48 @@ public class AllSortings {
 	      
 	      return arr;
 	}
+	
+	
+	//  TEST Does not WORK!! Quick Select should work
+	static int partitiontest(int arr[], int left, int right, int position)
+	{
+	      int i = left, j = right;
+	      int tmp;
+	      int pivot = arr[position]; // length -k -1 position. 
+	      int itr=0;
+	      while (i <= j) {
+	    	  itr++;
+	            while (arr[i] < pivot) //increase left untill it is lesser than pivot
+	                  i++;
+	            while (arr[j] > pivot) //decrease right untill it is greate than pivot
+	                  j--;
+	            if (i <= j) { //swap and do for others till left meets right
+	                  tmp = arr[i];
+	                  arr[i] = arr[j];
+	                  arr[j] = tmp;
+	                  i++;
+	                  j--;
+	            }
+	      };
+	     System.out.println("No of Iterations taken : "+ itr);
+	      return i;
+	}
+	 
+	static int[] quickSorttest(int arr[], int left, int right, int position) {		 	  
+	      partitiontest(arr, left, right, position);// do partition. middle . left side is small. right side is large	      
+	      return arr;
+	}
 
+	public static void quickSorttest(int arr[]){
+		int k = 8;
+		System.out.println("___________________QUICK SORT - K biggest elements___________________after " + k + "position index" );
+		System.out.println("Before finding biggest K elements");
+		print(arr);
+		quickSorttest(arr,0, arr.length-1,k);
+		System.out.println("After finding biggest K elements");
+		print(arr);
+		
+	}
 	public static void mergeSort(int arr[]) {
 
 		mergeSort_srt(arr, 0, arr.length-1);
