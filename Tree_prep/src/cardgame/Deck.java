@@ -10,10 +10,26 @@ public class Deck<T extends Card>{
 
     Deck(Class<T> cardtype) throws Exception
     {
+    	//if we know the type of parameters for that particular class
     	Class<?> parTypes[] = new Class<?>[2];
         parTypes[0] = Integer.class;
         parTypes[1] = Suit.class;
-        Constructor<T> ct = cardtype.getDeclaredConstructor(parTypes);
+       	
+        Constructor<T> ct = null;
+        ct = cardtype.getDeclaredConstructor(parTypes);
+        
+        /*
+        //of we can do like this.
+        Constructor<T>[] constructors = (Constructor<T>[]) cardtype.getConstructors();
+        for(int i=0;i<constructors.length;i++){
+        	
+        	 Class<?>[] parameterTypesonthefly =  constructors[i].getParameterTypes();
+        	 if(parameterTypesonthefly[0] == Integer.class && parameterTypesonthefly[1] == Suit.class){
+        		 ct = constructors[i];
+        		 break;
+        	 }
+        }
+        */
     
         cards = new ArrayList<T>();
         for (int a=1; a<=13; a++)
