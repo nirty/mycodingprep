@@ -4,6 +4,9 @@ public class OwnImplementations {
 
 	
 	public static void main(String[] args) {
+		
+		char[] word = {'h','e','l','l','o'};
+		stripString(word);
 		System.out.println("NEW PALINDROME");
 
 		System.out.println(isnewPalindrome("  a b  b  a"));
@@ -46,6 +49,14 @@ public class OwnImplementations {
 		
 		System.out.println("hello".compareTo("hellow"));
 		System.out.println("hellow".compareTo("hello"));		
+	}
+	
+	
+	public static void stripString(char[] word){
+		
+		word[3] = '\0';
+		
+		System.out.println(word);
 	}
 	
 	public static int atoi (String str){

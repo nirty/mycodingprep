@@ -39,12 +39,62 @@ public class LinkedList {
          }
 	 }
 	 
-	 public void recursivereverse(){
+	 public void recursivereverse(){		
+		root = reverse(root, null);
+	 }
+	 
+	 public Node recurse(Node node){
+		 if(node == null || node.next == null)
+			 return node;
+		 
+		 Node end = recurse(node.next);
+		 
+		 System.out.println("End - "+ end.value);
+		 Node curr = end;
+		 
+		 System.out.println("Curr= "+ curr.value);
+		 
+		 while(curr.next!=null)
+			 curr = curr.next;
+		 
+		 curr.next = node;
+		 System.out.println("Next of current" +curr.next.value);
+		 
+		 node.next = null;
+		 
+		 return end;
 		 
 	 }
 	 
-	 public void iterativereverse(){
-		 
+	 
+	 public Node  reverse( Node current , Node previous)
+	 {
+	     Node temp;
+	     if(current.next == null) {
+	         current.next = previous;
+	         return current;
+	     } else {
+	         temp = reverse(current.next, current);
+	         current.next = previous;
+	         return temp;
+	     }
+	 }
+	 
+	public Node reverse_itr( Node ptr)
+	 {
+	     Node temp;
+	     Node previous = null;
+	     while(ptr != null) {
+	         temp = ptr.next;
+	         ptr.next = previous;
+	         previous = ptr;
+	         ptr = temp;
+	     }
+	     return previous;
+	 }
+	 
+	 public void iterativereverse(){		 
+		 root = reverse_itr(root);
 	 }
 	 
 	 public void insertAt(String word, int position){

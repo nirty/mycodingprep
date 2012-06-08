@@ -9,13 +9,15 @@ public class AllSortings {
 		int arr[] =  {1, 12, 5, 26, 7, 14, 3, 7, 2};
 		
 		int testarr[] = {9,28,1,12,5,26,7,14,3,7,2};
-		bubbleSort(arr);
-		selectionSort(arr);
-		insertionSort(arr);
-		quickSort(arr);
-		quickSorttest(testarr);
-		mergeSort(arr);
-		iterativmergeSort(arr);
+		
+		int newtest[] = { 5,2,9,1,6};
+		//bubbleSort(arr);
+		//selectionSort(arr);
+		//insertionSort(arr);
+		quickSort(newtest);
+		//quickSorttest(testarr);
+		//mergeSort(arr);
+		// iterativmergeSort(arr);
 	}	
 	
 	public static void bubbleSort(int arr[]){
@@ -104,7 +106,7 @@ public class AllSortings {
 	      int i = left, j = right;
 	      int tmp;
 	      int pivot = arr[(left + right) / 2]; //middle element as pivot
-	     
+	      System.out.println( "Pivot is " +pivot);
 	      while (i <= j) {
 	            while (arr[i] < pivot) //increase left untill it is lesser than pivot
 	                  i++;
@@ -123,12 +125,16 @@ public class AllSortings {
 	}
 	 
 	static int[] quickSort(int arr[], int left, int right) {
+		
 	      int index = partition(arr, left, right);// do partition. middle . left side is small. right side is large
+	      System.out.println("Index is: "+ index);
 	      if (left < index - 1){// do left part except the middle one
+	    	  System.out.println("Left: "+ left + "index-1: "+ (index-1));
 	            quickSort(arr, left, index - 1);		
 	      }
 	      if (index < right){// do the right one excpet the middle one
-	            quickSort(arr, index, right);	
+	    	  System.out.println("index: "+ index + "right: "+ right);
+	            quickSort(arr, index, right);	// i crosses.. pivot hence only no index+1
 	      }
 	      
 	      return arr;
@@ -215,7 +221,7 @@ public class AllSortings {
 		}
 	}
 
-	public static void iterativmergeSort(int arr[]) {
+	public static void iterativmergeSort(int arr[]) {//TODO
 
 	
 		System.out.println(arr);
