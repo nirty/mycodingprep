@@ -82,18 +82,45 @@ public class BinarySearchRotated {
 	                   circularBinSearch(A, key, mid + 1, high);
 	        }
 	    }
+	    
+	    static void swap(Integer a[], int i, int j)
+	    {
+	       int temp = a[i];
+	       a[i] = a[j];
+	       a[j] = temp;
+	    }
+	    
+	    static void reverse(Integer a[],int start,int end){	    	
+	    	while(start<=end){	    		
+	    		swap(a, start, end);	    		
+	    		start++;
+	    		end--;
+	    	}	    	
+	    }
+	    
+	    static void rotate(Integer a[],int positions){
+	    	
+	    	reverse(a,0,positions-1);
+	    	reverse(a,positions,a.length-1);
+	    	reverse(a,0,a.length-1);
+	    }
 	    public static void main(String[] args) {
-	        Integer[] arr = {  4, 5, 6, 7 , 1, 2, 3};
+	    	
+	    	
+	        Integer[] arr = {1, 2, 3, 4, 5, 6, 7 };
 	        // must be in sorted order, allowing rotation, and contain no duplicates
 
+	        rotate(arr, 3);
+	        
+	        System.out.println("After rotating 3 positions : "+ Arrays.toString(arr));
+	        
+	        
 	        for (int i = 0; i < arr.length; i++) {
 	            System.out.print(Arrays.toString(arr));
 	            int minIndex = findMinimum(arr);
 	            System.out.println(" Min is " + arr[minIndex] + " at " + minIndex);
 	            int keyIndex = findElement(arr, 6);
             	System.out.println(" Value found is 6 at " + keyIndex); //does not work when it is already sorted position at 0
-            	
-            	
             	
             	//Working  :-)
             	int keycircularIndex = circularBinSearch(arr, 6,0,arr.length-1);
