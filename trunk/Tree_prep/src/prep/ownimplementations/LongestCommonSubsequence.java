@@ -55,10 +55,9 @@ public class LongestCommonSubsequence {
 }
 
 
+/**
 
-/*
-
-           A  G  C  G  A 
+       A  G  C  G  A 
     0  0  0  0  0  0 
  C  0  0  0  1  1  1 
  A  0  1  1  1  1  2 
@@ -120,8 +119,6 @@ LCS=BDAB
  n  .  ^  ^  ^  ^  ^  ^  \  <  <  <  < 
  s  .  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  \ 
 LCS=hmans
-
-
 
 
 
