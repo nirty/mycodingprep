@@ -8,7 +8,7 @@ public class BinaryTree {
 
 	private Node root;
 	
-	
+	 
 	public BinaryTree(){
 		root = null;
 	}
@@ -194,7 +194,7 @@ public class BinaryTree {
 		if(node == null)
 			return;		
 		
-		a.add(length, node.getValue().getWeight());
+		a.add(length, node.getValue().getWeight()); 
 		length++;
 	
 		if(node.getLeft()==null && node.getRight()==null)
