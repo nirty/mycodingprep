@@ -3,136 +3,94 @@ package sorting;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class KthLargest {
 
-	public static int kthlargest(int arr[],int k){
-		
-		if(k < 1 || k > arr.length){			
-			return -1;
-		}		
-		return kthlargest_partioning(arr, 0, arr.length -1, k - arr.length + 1);		
+	public static void kthlargest(int arr[], int k) {
+		kthlargest_partioning(arr, 0, arr.length - 1,
+				Math.abs(k - arr.length));
 	}
-	
-	public static int kthlargest_partioning(int arr[], int start, int end, int k){
-	int pivot = start;
-	int left = start;	
-	int right = end;
-	
-	System.out.println("Start :" + start + " End: " + end + "Pivot :" + pivot + " K value: " + k);
-	
-	
-	while(left<= right){		
-		while(left<= right && arr[left]<= arr[pivot])
-			++left;
-		while(left<=right && arr[right]>=arr[pivot])
-			--right;
-		
-		
-		if(left<right)
-			swap(arr,left,right);
-	}
-	
-	
-	
-	swap(arr,pivot,right);
-	
-	System.out.println("pivot set for index :"+ right);
-	
-	if(k==right + 1)
-		return arr[right];
-	else if (k>right+1)
-		return kthlargest_partioning(arr,right+1,end,k);
-	else
-		return kthlargest_partioning(arr,start,right-1,k);	
-	}
-	
-	
-	public static void quickSort(int arr[]){
-		
-		quickSort(arr,0, arr.length-1);
-		System.out.println("___________________QUICK SORT___________________");
-		print(arr);
-		
-	}
-	
-	public static void print(int arr[]){
-		for(int i=0;i<arr.length;i++)
-			System.out.print(arr[i]+" ");
-		System.out.println();		
-	}
-	
-	
-	static void quickSort(int arr[], int low, int high)
-    {
-       if (low >= high) return;
-       int p = partition(arr, low, high);
-       quickSort(arr, low, p);
-       quickSort(arr, p + 1, high);
-    }
- 
-    static int partition(int a[], int low, int high)
-    {
-       // First element
-       int pivot = a[low];
- 
-      // Middle element
-       //int middle = (low + high) / 2;
-       //int pivot = a[middle];
 
-       int i = low - 1;
-       int j = high + 1;
-       while (i < j)
-       {
-          i++; 
-          j--;
-          while (a[i] < pivot) 
-        	  i++;
-           
-          while (a[j] > pivot) 
-        	  j--;
-          
-          
-          if (i < j) 
-        	  swap(a, i, j);
-      }
-       return j;
-    }
- 
-    /**
-       Swaps two entries of the array.
-       @param i the first position to swap
-       @param j the second position to swap
-    */
-    static void swap(int a[], int i, int j)
-    {
-       int temp = a[i];
-       a[i] = a[j];
-       a[j] = temp;
-    }
- 
+	public static void kthlargest_partioning(int arr[], int start, int end,
+			int k) {
+		if (start <= end) {
+			System.out
+					.println("____________________________________________________________________________________");
+			System.out.println("Before partioning");
+			print(arr);
+
+			Random g_Generator = new Random();
+			int pivotindex = g_Generator.nextInt(end - start + 1) + start;
+			System.out.println("Start :" + start + " End: " + end + " Pivot position: " + pivotindex + " pivot value "+ arr[pivotindex] + " K value: " + k);
+
+			int pivotValue = arr[pivotindex];
+			int newindexposofPIvot = RandomPartition(arr, start, end, pivotindex);
+
+			System.out.println(" New index of " + pivotValue + " is "+ newindexposofPIvot);
+
+			if (k == newindexposofPIvot)
+				System.out.println(" RESULT ********" + arr[newindexposofPIvot]);
+			else if (k < newindexposofPIvot)
+				kthlargest_partioning(arr, start, newindexposofPIvot - 1, k);
+			else
+				kthlargest_partioning(arr, newindexposofPIvot + 1, end, k);
+
+		}
+
+	}
+
+	private static int RandomPartition(int[] arr, int start, int end,
+			int pivotindex) {
+		swap(arr, start, pivotindex);
+		return partition(arr, start, end);
+	}
+
+	public static void print(int arr[]) {
+		for (int i = 0; i < arr.length; i++)
+			System.out.print(arr[i] + " ");
+		System.out.println();
+	}
+
+	static int partition(int arr[], int i, int j) {
+		int val = arr[i];
+		int h = i;
+		for (int k = i + 1; k <= j; k++) {
+			if (arr[k] < val) {
+				h = h + 1;
+				swap(arr, h, k);
+			}			
+		}
+		swap(arr, i, h);
+		return h;
+	}
+
+	/**
+	 * Swaps two entries of the array.
+	 * 
+	 * @param i
+	 *            the first position to swap
+	 * @param j
+	 *            the second position to swap
+	 */
+	static void swap(int a[], int i, int j) {
+		//System.out.println("Swapping :" + i + " & " + j);
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+
 	public static void main(String[] args) {
-		
-		
-		int[] test_array1 = {5,2,9,1,6};
-		int arr[] =  {1, 12, 5, 26, 7, 14, 3, 7, 2};
-		
-		int testarr[] = {9,28,1,12,5,26,7,14,3,7,2};
-		//quickSort(test_array1);
-		//quickSort(arr);
-		//quickSort(testarr);
-		
-		
+
+		int[] test_array1 = { 5, 2, 9, 1, 6 };
+		int arr[] = { 1, 12, 5, 26, 7, 14, 3, 7, 2 };
+		int testarr[] = { 9, 28, 1, 12, 5, 26, 7, 14, 3, 7, 2 };
 		print(testarr);
-		int pos = 11;
+		int pos = 2;
 		System.out.println("K th Largest number" + pos);
-		System.out.println(kthlargest(testarr, pos));
+		kthlargest(testarr, pos);
+
 		print(testarr);
-		
-		//int[] test_array2 = {1,7,59, 73,22, 65,90,2,4,10,50};		
-		//System.out.println("Largest element - Median of Medians");
-		//System.out.println(kthlargest_medianofmedians(test_array2,0,test_array2.length-1, 1));
-		
 	}
 
 }
