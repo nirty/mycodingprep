@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.Random;
+
 public class AllSortings {
 
 	
@@ -10,14 +12,15 @@ public class AllSortings {
 		
 		int testarr[] = {9,28,1,12,5,26,7,14,3,7,2};
 		
-		int newtest[] = { 5,2,9,1,6};
-		//bubbleSort(arr);
-		//selectionSort(arr);
-		//insertionSort(arr);
+		int newtest[] = {9,28,1,12,5,26,7,14,3,7,2};
+		bubbleSort(arr);
+		selectionSort(arr);
+		insertionSort(arr);
+		print(newtest);
 		quickSort(newtest);
-		//quickSorttest(testarr);
-		//mergeSort(arr);
-		// iterativmergeSort(arr);
+		quickSorttest(testarr);
+		mergeSort(arr);
+		iterativmergeSort(arr);
 	}	
 	
 	public static void bubbleSort(int arr[]){
@@ -93,25 +96,26 @@ public class AllSortings {
 		
 	}
 	
-	public static void quickSort(int arr[]){
-		
+	public static void quickSort(int arr[]){		
 		quickSort(arr,0, arr.length-1);
 		System.out.println("___________________QUICK SORT___________________");
-		print(arr);
-		
+		print(arr);		
 	}
+	
+	
 	
 	static int partition(int arr[], int left, int right)
 	{
 	      int i = left, j = right;
 	      int tmp;
-	      int pivot = arr[(left + right) / 2]; //middle element as pivot
-	      System.out.println( "Pivot is " +pivot);
+	      int pivot = arr[(left + right) / 2]; //middle element as pivot	     
+	      System.out.println( "In Partition, Pivot is " + pivot + " pivot index is" + (left + right) / 2);
+	      int tempnewpos = 0;
 	      while (i <= j) {
 	            while (arr[i] < pivot) //increase left untill it is lesser than pivot
 	                  i++;
 	            while (arr[j] > pivot) //decrease right untill it is greate than pivot
-	                  j--;
+	                  j--;	            
 	            if (i <= j) { //swap and do for others till left meets right
 	                  tmp = arr[i];
 	                  arr[i] = arr[j];
@@ -121,19 +125,48 @@ public class AllSortings {
 	            }
 	      };
 	     
+	      System.out.println("after partition the new index for pivot is" + tempnewpos);
 	      return i;
 	}
 	 
-	static int[] quickSort(int arr[], int left, int right) {
+	
+	static int partition_withposreturn(int arr[], int left, int right) {
+		int Pivotval = arr[left];
+		int PivotPosition = left;
+		for (int k = left + 1; k <= right; k++) {
+			if (arr[k] < Pivotval) {				
+				PivotPosition = PivotPosition + 1;
+				swap(arr, PivotPosition, k, " <<<<< ");
+			}			
+		}
 		
-	      int index = partition(arr, left, right);// do partition. middle . left side is small. right side is large
-	      System.out.println("Index is: "+ index);
+		swap(arr, left, PivotPosition , " outside");
+		return PivotPosition;
+	}
+	
+	static void swap(int a[], int i, int j, String printhelper) {
+		System.out.println("Swapping :" + i + " & " + j  +" that is " + a[i] + " & " + a[j]  + " : " + printhelper);
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+	
+	static int[] quickSort(int arr[], int left, int right) {
+		System.out.println("____________________________________________________________________________________");	
+		System.out.println("Before partition");
+	      print(arr);  
+		
+		int index = partition(arr, left, right);// do partition. middle . left side is small. right side is large
+	      System.out.println("partitioned array");
+	      print(arr);
+	     System.out.println("After partition , Index is: "+ index);
 	      if (left < index - 1){// do left part except the middle one
-	    	  System.out.println("Left: "+ left + "index-1: "+ (index-1));
+	    	 // System.out.println("Left: "+ left + "index-1: "+ (index-1));
+	    	  
 	            quickSort(arr, left, index - 1);		
 	      }
 	      if (index < right){// do the right one excpet the middle one
-	    	  System.out.println("index: "+ index + "right: "+ right);
+	    	  //System.out.println("index: "+ index + "right: "+ right);
 	            quickSort(arr, index, right);	// i crosses.. pivot hence only no index+1
 	      }
 	      
