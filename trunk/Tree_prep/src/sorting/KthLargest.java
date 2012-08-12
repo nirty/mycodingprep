@@ -42,7 +42,7 @@ public class KthLargest {
 
 	private static int RandomPartition(int[] arr, int start, int end,
 			int pivotindex) {
-		swap(arr, start, pivotindex);
+		swap(arr, start, pivotindex, " Random to Left");
 		return partition(arr, start, end);
 	}
 
@@ -52,17 +52,18 @@ public class KthLargest {
 		System.out.println();
 	}
 
-	static int partition(int arr[], int i, int j) {
-		int val = arr[i];
-		int h = i;
-		for (int k = i + 1; k <= j; k++) {
-			if (arr[k] < val) {
-				h = h + 1;
-				swap(arr, h, k);
+	static int partition(int arr[], int left, int right) {
+		int Pivotval = arr[left];
+		int PivotPosition = left;
+		for (int k = left + 1; k <= right; k++) {
+			if (arr[k] < Pivotval) {				
+				PivotPosition = PivotPosition + 1;
+				swap(arr, PivotPosition, k, " <<<<< ");
 			}			
 		}
-		swap(arr, i, h);
-		return h;
+		
+		swap(arr, left, PivotPosition , " outside");
+		return PivotPosition;
 	}
 
 	/**
@@ -73,8 +74,8 @@ public class KthLargest {
 	 * @param j
 	 *            the second position to swap
 	 */
-	static void swap(int a[], int i, int j) {
-		//System.out.println("Swapping :" + i + " & " + j);
+	static void swap(int a[], int i, int j, String printhelper) {
+		System.out.println("Swapping :" + i + " & " + j  +" that is " + a[i] + " & " + a[j]  + " : " + printhelper);
 		int temp = a[i];
 		a[i] = a[j];
 		a[j] = temp;
