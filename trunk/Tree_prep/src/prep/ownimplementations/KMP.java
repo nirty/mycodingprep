@@ -1,7 +1,7 @@
 package prep.ownimplementations;
 
 public class KMP {
-
+	//did not study
 	static void preComputeData(char[] x, int m, int Next[]) 
 	{ 
 	
