@@ -6,6 +6,7 @@ public class BinarySearchRotated {
 	        int high = arr.length - 1;
 	        while (arr[low] > arr[high]) {
 	            int mid = (low + high) >>> 1;
+	          // System.out.println("low " + low + " mid : " + mid + " High : " + high);
 	            if (arr[mid] > arr[high]) {
 	                low = mid + 1;
 	            } else {
@@ -71,7 +72,7 @@ public class BinarySearchRotated {
 	        }
 	        else if (key < A[mid])
 	        {
-	            return ((A[low] <= A[mid]) && (A[low] > key)) ?
+	            return ((A[low] <= A[mid]) && (A[low] > key)) ? //opposite faced condition!! IMPORTANT
 	                   circularBinSearch(A, key, mid + 1, high) :
 	                   circularBinSearch(A, key, low, mid - 1);
 	        }
@@ -104,27 +105,28 @@ public class BinarySearchRotated {
 	    	reverse(a,positions,a.length-1);
 	    	reverse(a,0,a.length-1);
 	    }
+	    
 	    public static void main(String[] args) {
 	    	
 	    	
-	        Integer[] arr = {1, 2, 3, 4, 5, 6, 7 };
+	        Integer[] arr = {1, 2, 4, 5, 6, 9, 10 };
 	        // must be in sorted order, allowing rotation, and contain no duplicates
 
-	        rotate(arr, 3);
+	        rotate(arr, 4);
 	        
-	        System.out.println("After rotating 3 positions : "+ Arrays.toString(arr));
+	        System.out.println("After rotating 4 positions : "+ Arrays.toString(arr));
 	        
 	        
 	        for (int i = 0; i < arr.length; i++) {
 	            System.out.print(Arrays.toString(arr));
 	            int minIndex = findMinimum(arr);
 	            System.out.println(" Min is " + arr[minIndex] + " at " + minIndex);
-	            int keyIndex = findElement(arr, 6);
-            	System.out.println(" Value found is 6 at " + keyIndex); //does not work when it is already sorted position at 0
+	            //int keyIndex = findElement(arr, 6);
+            	//System.out.println(" Value found is 6 at " + keyIndex); //does not work when it is already sorted position at 0
             	
             	//Working  :-)
-            	int keycircularIndex = circularBinSearch(arr, 6,0,arr.length-1);
-            	System.out.println(" Value found is 6 at " + keycircularIndex); //does not work when it is already sorted position at 0
+            	//int keycircularIndex = circularBinSearch(arr, 6,0,arr.length-1);
+            	//System.out.println(" Value found is 6 at " + keycircularIndex); //does not work when it is already sorted position at 0
             	
             	Collections.rotate(Arrays.asList(arr), 1);
 	        }
