@@ -5,11 +5,10 @@ import java.util.Collections;
 import java.util.Random;
 
 public class MedianOfMedians {
-        public static Random g_Generator = new Random();
         
-        public static int select(ArrayList<Integer> pList, int pK)
+        public static int select1(ArrayList<Integer> pList, int pK)
         {
-                ArrayList<Integer> l_dup = new ArrayList<Integer>(pList);
+            ArrayList<Integer> l_dup = pList;
             if (l_dup.size() <= 10 )
             {
                 Collections.sort(l_dup);
@@ -28,12 +27,12 @@ public class MedianOfMedians {
                 }
                 
                 if( i + 5 < l_dup.size() )
-                        l_x.add(new Integer(select(l_tmp,3)));
+                        l_x.add(new Integer(select1(l_tmp,3)));
                 else
-                        l_x.add(new Integer(select(l_tmp,(l_dup.size() - i)/2)));
+                        l_x.add(new Integer(select1(l_tmp,(l_dup.size() - i)/2)));
             }
                 
-            int l_middle = select(l_x, l_x.size()/2);
+            int l_middle = select1(l_x, l_x.size()/2);
                     
             ArrayList<Integer> l_lower, l_higher, l_exact;
             
@@ -53,55 +52,55 @@ public class MedianOfMedians {
             
             if (pK < l_lower.size())
             {
-                return select(l_lower,pK);
+                return select1(l_lower,pK);
             }
             else if (pK > l_lower.size() + l_exact.size() )
             {           
-                return select(l_higher, pK - l_lower.size() - l_exact.size());
+                return select1(l_higher, pK - l_lower.size() - l_exact.size());
             }
             else return l_exact.get(0);
         }
+       
         
-        public static void printList(ArrayList<Integer> pList)
-        {
-                System.out.print("Elements: ");
-                
-                int l_mean = 0;
-                for( int i = 0 ; i < pList.size() ; i++ )
+        public static void print(ArrayList<Integer> pist)
+        {                
+                for( int i = 0 ; i < pist.size() ; i++ )
                 {
-                        if( i == pList.size() / 2 )
-                                System.out.print(" | ");
-                        System.out.print(pList.get(i) + ", ");
-                        if( i == pList.size() / 2 )
-                                System.out.print(" | ");
-                        l_mean += pList.get(i);
+                      System.out.print(pist.get(i) + "  "); 
                 }
-                
-                l_mean /= pList.size();
-                
-                System.out.println(" - Mean: " + l_mean);
+                System.out.println();
         }
+        
         public static void main(String args[])
         {
-                for( int i = 0 ; i < 100 ; i++ )
-                {
-                        ArrayList<Integer> l_list = new ArrayList<Integer>(20);
-
+               
+                       ArrayList<Integer> list = new ArrayList<Integer>();
+                       list.add(9);
+                       list.add(28);
+                       list.add(1);
+                       list.add(12);
+                       list.add(5);
+                       list.add(26);
+                       list.add(7);
+                       list.add(14);
+                       list.add(3);
+                       list.add(7);
+                       list.add(2);
+                       
+                       	System.out.println("Before Median of Medians");
+                        print(list); 
                         System.out.println("-----------------------");
-                        for( int q = 0 ; q < 50 ; q++ )
-                        {
-                                l_list.add(new Integer(g_Generator.nextInt(1000)));
-                        }
-                        
-                        printList(l_list);              
-                        
-                        System.out.println("Median: " + select(l_list, l_list.size()/2));       
-                        
-                        Collections.sort(l_list);
-                        printList(l_list);
-                        
+                        int pos = 0;
+                        System.out.println(" REsult at: "+ pos +" is " + select1(list, pos));
                         System.out.println("-----------------------");
-                }               
+                        System.out.println("After Median of Medians");
+                        print(list);
+                        System.out.println("-----------------------");
+                        System.out.println("SORTED");
+                        Collections.sort(list);
+                        print(list);                        
+                        System.out.println("-----------------------");
+                       
         }
 }
  
