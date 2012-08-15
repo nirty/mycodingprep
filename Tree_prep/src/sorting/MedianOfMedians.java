@@ -27,12 +27,12 @@ public class MedianOfMedians {
                 }
                 
                 if( i + 5 < l_dup.size() )
-                        l_x.add(new Integer(select1(l_tmp,3)));
+                        l_x.add(new Integer(select1(l_tmp,3)));//get median of this group
                 else
-                        l_x.add(new Integer(select1(l_tmp,(l_dup.size() - i)/2)));
+                        l_x.add(new Integer(select1(l_tmp,(l_dup.size() - i)/2)));//get median of this group
             }
                 
-            int l_middle = select1(l_x, l_x.size()/2);
+            int l_middle = select1(l_x, l_x.size()/2); // median of medians
                     
             ArrayList<Integer> l_lower, l_higher, l_exact;
             
@@ -40,6 +40,9 @@ public class MedianOfMedians {
             l_higher = new ArrayList<Integer>();
             l_exact = new ArrayList<Integer>();
             
+            
+            // Can call Quick Select based on this median. 
+            // This is other way of doing Quick Select
             for( int i = 0 ; i < l_dup.size(); i++ )
             {
                 if( l_dup.get(i) < l_middle )
@@ -50,6 +53,7 @@ public class MedianOfMedians {
                         l_exact.add(l_dup.get(i));
             }
             
+            // Do recursive call. To find out the Kth Largest Value.
             if (pK < l_lower.size())
             {
                 return select1(l_lower,pK);
@@ -58,7 +62,7 @@ public class MedianOfMedians {
             {           
                 return select1(l_higher, pK - l_lower.size() - l_exact.size());
             }
-            else return l_exact.get(0);
+            else return l_exact.get(0);  //returns the Kth Largest Value.
         }
        
         
@@ -90,7 +94,7 @@ public class MedianOfMedians {
                        	System.out.println("Before Median of Medians");
                         print(list); 
                         System.out.println("-----------------------");
-                        int pos = 0;
+                        int pos = 0; 
                         System.out.println(" REsult at: "+ pos +" is " + select1(list, pos));
                         System.out.println("-----------------------");
                         System.out.println("After Median of Medians");
