@@ -1,5 +1,7 @@
 package prep.ownimplementations;
 
+
+//PREPARED THIS...................................................................................................
 public class BoyerMooreGood {
     private char[] pattern, textstring;       // pattern, text
     private int m_patternlen, n_textlen;          // pattern length, text length
