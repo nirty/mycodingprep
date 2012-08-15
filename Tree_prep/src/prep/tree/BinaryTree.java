@@ -54,7 +54,7 @@ public class BinaryTree {
 		}
 		else if(newnode.getValue().getWeight()<=parent.getValue().getWeight()){
 			if(parent.left ==null)
-				parent.left = insert(parent.getLeft(),newnode);
+				parent.left = insert(parent.getLeft(),newnode);// or just say newnode
 			else
 				insert(parent.getLeft(),newnode);
 		}
@@ -98,7 +98,9 @@ public class BinaryTree {
 		else{
 			
 			int ldepth = depth(node.getLeft());
-			int rdepth = depth(node.getRight());			
+			int rdepth = depth(node.getRight());	
+			
+			//return Math.max(depth(node.getLeft()),depth(node.getRight())) +1 ;
 			if(ldepth > rdepth)
 				return (ldepth + 1);
 			else
@@ -201,8 +203,7 @@ public class BinaryTree {
 			printarr(a,length);
 		else{
 			printpath(node.getLeft(),a,length);
-			printpath(node.getRight(),a,length);
-			
+			printpath(node.getRight(),a,length);			
 		}		
 	}
 	
@@ -247,6 +248,11 @@ public class BinaryTree {
 		return rightok;	
 	}
 
+	
+	//instead arrange in in order and see if all sorted. yes  - is a bst. o(n) space.
+	// keep track of last visited node. see if this node is smaller than that. O(1) space.
+	
+	
 	public Node nthinordernode(int n){
 		 nthorder(root,n);
 		 return finalnode;
@@ -595,10 +601,35 @@ public class BinaryTree {
 	        } else {
 	            node = stack.pop( );
 	            System.out.print( node.getValue().getWeight() + " " );
-	            node = node.right;
+	            node = node.right; // may be null. making it pop. if not null the do the sub tree in it.
 	        }
 	    }
 	}
+	
+	public void my_inorder( ) {
+	    
+	    Stack<Node> stack = new Stack<Node>( );
+	    Node curr = root;
+	    while( true) {
+	       if(curr!=null){
+	    	   stack.push(curr);
+	    	   curr = curr.left;
+	    	   continue;
+	       }
+	       
+	       if(stack.isEmpty())return;
+	       Node temp = stack.pop();
+	       System.out.print( temp.getValue().getWeight() + " " );
+	       if(temp.right==null){	    	   
+	    	   curr = null; // so to make it pop
+	       }
+	       else{	    	   
+	    	   curr = temp.right; // This has a sub tree. so again go deep left in here.
+	       }
+	       
+	    }
+	}
+	
 	 
 
 	public void postorder( ) {
@@ -734,6 +765,10 @@ public class BinaryTree {
 		System.out.println();
 		System.out.println("_________________________________INORDER in ITERATIVe");
 		tree.inorder();
+		System.out.println();
+		
+		System.out.println("_________________________________ MY INORDER in ITERATIVe");
+		tree.my_inorder();
 		System.out.println();
 		System.out.println("_________________________________POSTORDER in ITERATIVe");
 		tree.postorder();
