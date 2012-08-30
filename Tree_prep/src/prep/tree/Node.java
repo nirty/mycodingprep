@@ -134,7 +134,7 @@ public class Node implements Comparable<Node>{
 			
 			
 			boolean leftbalanced = false;
-			boolean rightbalanced = true;
+			boolean rightbalanced = false;
 			
 			if(this.getLeft() == null)
 				leftbalanced = true;

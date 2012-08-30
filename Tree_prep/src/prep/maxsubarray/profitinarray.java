@@ -6,7 +6,7 @@ public class profitinarray {
 	
 	public static void main(String[] args)
 	{
-	    double[] values = { 55.39, 109.23, 48.29, 81.59, 81.58, 105.53, 9.45, 1299.24 };
+	    double[] values = { 3, 5, 6, 7, 81.58, 105.53, 9.45, 1299.24, 1, 2000.24 };
 
 	    double max = Double.MAX_VALUE, maxDiff = Double.MIN_VALUE, diff = 0;
 	    double bottom = values[0];
@@ -28,7 +28,7 @@ public class profitinarray {
 	        }
 	    }
 
-	    System.out.println("Buy at; Sell at" +( max - maxDiff)+" :" + max);
+	    System.out.println("Buy at; Sell at" +( max - maxDiff)+" :" + max + " Bottom:" + bottom);
 	}
 
 }
