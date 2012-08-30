@@ -66,7 +66,10 @@ public class EditDistance
                    if (distances[i][j-1] + 1 < distances[i][j])
                    {
                        distances[i][j] = distances[i][j-1] + 1;
-                   }             
+                   } 
+                   
+                   distances [i][j] =  Math.min(distances[i][j], Math.min(distances[i-1][j] +1 , Math.min(distances[i-1][j-1] + 1, distances[i][j-1] + 1)));
+                   System.out.println("MAx calculation is :" + Math.min(distances[i][j], Math.min(distances[i-1][j] +1 , Math.min(distances[i-1][j-1] + 1, distances[i][j-1] + 1))) + "  : Normal caluclation is "+ distances[i][j]);
                }
            }
        }
@@ -75,6 +78,10 @@ public class EditDistance
        
        return distances[rows - 1][cols - 1];
    }
+   
+   
+   //can do the words that has to be changed ... 
+   
    
    private static void printTable (int [][] table, int rows, int cols)
    {
@@ -90,5 +97,3 @@ public class EditDistance
    }
 
 }
-
-//  http://dl.dropbox.com/u/79092223/Images/53_edit_distance_example.png
