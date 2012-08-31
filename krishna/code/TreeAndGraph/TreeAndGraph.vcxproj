@@ -15,6 +15,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Globals">
     <RootNamespace>TreeAndGraph</RootNamespace>
+    <ProjectGuid>{A4B017CD-C09B-2DA4-1982-C7D7E960EE9E}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
