@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 public class KnapSack {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		int p[] = {50, 10, 30, 40};
 		int w[] = {10, 5 ,5 ,2};
 		KnapSack kp = new KnapSack();		
