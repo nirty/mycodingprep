@@ -19,7 +19,7 @@ public class SumOfSubsets {
 		findSubsets(0,sum,0,sum);
 	}
 	
-	public void findSubsets(int pos, int K, int currsum, int bound) {
+	public void findSubsets_good(int pos, int K, int currsum, int bound) {
 
 		if (isPromimsing(pos, currsum, K, bound)) {
 
@@ -45,6 +45,32 @@ public class SumOfSubsets {
 			}
 		}
 
+	}
+	
+	public void findSubsets(int pos, int K, int currsum, int bound) {
+		
+		if (currsum == K) {
+			System.out.println("Found Matched Subsets");
+			for (int i = 0; i <= b_arr.length - 1; i++) {
+				if (b_arr[i] == true) {
+					System.out.print(arr[i] + "  ");
+				}
+			}
+			System.out.println();
+
+		} 
+		
+		if(isPromimsing(pos, currsum, K, bound)){
+			
+				if (pos <= arr.length - 1) {				
+					b_arr[pos] = true;
+					findSubsets(pos + 1, K, currsum + arr[pos], bound- arr[pos]);
+				
+					b_arr[pos] = false;
+					findSubsets(pos + 1, K, currsum, bound - arr[pos]);				
+				}
+		}
+		
 	}
 	
 	private boolean isPromimsing(int pos, int currsum, int K, int bound) {	

@@ -88,15 +88,20 @@ public class KnapSackBestFirst {
 				u.weightcounted = v.weightcounted + weights[u.level];
 				u.parent = v;
 				u.included = true;
+				
+				//update the best node
 				if(u.weightcounted <= maxweight && u.profitcounted > bestprofit){
 					bestprofit = u.profitcounted;
 					lastNode = u;					
 				}
 					
+				//add them to the queue by including
 				u.bound = bound(u);
 				if(u.bound > bestprofit)					
 					queue.add(u);
 				
+				
+				//check the bound without including this node.
 				u.profitcounted = v.profitcounted;
 				u.weightcounted = v.weightcounted;
 				u.bound = bound(u);
