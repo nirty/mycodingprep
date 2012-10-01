@@ -68,7 +68,7 @@ public class EditDistance
                        distances[i][j] = distances[i][j-1] + 1;
                    } 
                    
-                   distances [i][j] =  Math.min(distances[i][j], Math.min(distances[i-1][j] +1 , Math.min(distances[i-1][j-1] + 1, distances[i][j-1] + 1)));
+                  // distances [i][j] =  Math.min(distances[i][j], Math.min(distances[i-1][j] +1 , Math.min(distances[i-1][j-1] + 1, distances[i][j-1] + 1)));
                    System.out.println("MAx calculation is :" + Math.min(distances[i][j], Math.min(distances[i-1][j] +1 , Math.min(distances[i-1][j-1] + 1, distances[i][j-1] + 1))) + "  : Normal caluclation is "+ distances[i][j]);
                }
            }
