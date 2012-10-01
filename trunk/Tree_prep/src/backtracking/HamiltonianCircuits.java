@@ -37,6 +37,25 @@ public class HamiltonianCircuits {
 			}
 		}
 	}
+	
+	private void recurseHamiltonian_new(int i) {
+		
+		if(i==vertices-1){				
+			System.out.println("Found out Paths");
+			for(int k=0;k<vertices;k++)
+				System.out.println(vindex[k] + 1);
+			
+			System.out.println( vindex[0] + 1);
+		}else{
+			
+			for(int j=1;j<vertices;j++){
+				vindex[i+1] = j;
+				if(isPromising(i+1)){
+					recurseHamiltonian(i+1);
+				}
+			}
+		}
+	}
 
 	private boolean isPromising(int i) {
 		

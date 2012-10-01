@@ -20,7 +20,7 @@ public class GraphColoring {
 	}
 	
 	
-	private void backtrackcolors(int i) {
+	private void backtrackcolors_good(int i) {
 
 		if(IsPromising(i)){			
 			if(i==noofvertex - 1){
@@ -38,6 +38,21 @@ public class GraphColoring {
 		
 	}
 
+	private void backtrackcolors(int i) {
+
+		if(i==noofvertex - 1){
+			for(int k=0;k<noofvertex;k++)
+				System.out.println((vcolors[k]+1) +  "  ");
+		}
+		else{			
+			for(int j=0; j<m_colors;j++){
+				vcolors[i+1] = j;
+				if(IsPromising(i+1)){	
+					backtrackcolors(i+1);
+				}
+			}
+		}		
+	}
 
 	private boolean IsPromising(int i) {		
 		for(int j=0;j<noofvertex;j++){			
