@@ -11,7 +11,7 @@ public class BinaryMinHeap {
     
     public BinaryMinHeap() {
         data = new ArrayList<Integer>();
-  }
+     }
 
     public int getMinimum() throws Exception {
           if (isEmpty())
