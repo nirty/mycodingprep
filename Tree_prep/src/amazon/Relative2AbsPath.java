@@ -7,8 +7,7 @@ public class Relative2AbsPath {
 	
 	public static String convertPath(String relpath){
 		
-		
-		
+				
 		
 		if(relpath.indexOf("/") == 0)
 			relpath = relpath.substring(1);
